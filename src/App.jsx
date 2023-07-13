@@ -3,6 +3,7 @@ import "./App.css";
 import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import { IFC, Lights } from "./components/index";
 
 function App() {
   return (
@@ -11,6 +12,8 @@ function App() {
         <color attach="background" args={["#222"]} />
         <React.Suspense fallback={null}>
           <gridHelper args={[1500, 100]} position={[0, -0.5, 0]} />
+          <IFC />
+          <Lights />
         </React.Suspense>
         <OrbitControls />
       </Canvas>
