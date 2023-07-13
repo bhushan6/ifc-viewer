@@ -11,3 +11,36 @@ body,
   padding: 0;
   overflow: hidden;
 }
+
+button {
+  all: unset;
+}
+
+.Button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 0 15px;
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 500;
+  height: 35px;
+  cursor: pointer;
+  background: white;
+  color: black;
+  transition: all 0.4s ease-in-out;
+}
+
+.Button:hover {
+  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+}
+
+.input {
+  color: transparent;
+}
+
+.input::-webkit-file-upload-button {
+  visibility: hidden;
+}

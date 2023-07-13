@@ -27,12 +27,26 @@ const IfcFileContext = ({ children }) => {
 
 export const useIfcFile = () => useContext(IfcFileCtx);
 
+const LoadingCtx = createContext(null);
+
+const LoadingContext = ({ children }) => {
+  const loadingState = useState(null);
+
+  return (
+    <LoadingCtx.Provider value={loadingState}>{children}</LoadingCtx.Provider>
+  );
+};
+
+export const useLoading = () => useContext(LoadingCtx);
+
 export const Context = ({ children }) => {
   return (
     <>
-      <IfcFileContext>
-        <IfcModelContext>{children}</IfcModelContext>
-      </IfcFileContext>
+      <LoadingContext>
+        <IfcFileContext>
+          <IfcModelContext>{children}</IfcModelContext>
+        </IfcFileContext>
+      </LoadingContext>
     </>
   );
 };

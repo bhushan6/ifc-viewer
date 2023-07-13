@@ -2,16 +2,19 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useMemo, useState } from "react";
 import { IFCLoader } from "web-ifc-three/IFCLoader";
-import ifcURL from "../../assets/test2.ifc";
+// import ifcURL from "../../assets/test2.ifc";
 import { IFCSPACE } from "web-ifc";
-import { useIfcModel } from "../index";
+import { useIfcFile, useIfcModel } from "../index";
 
 export const IFC = () => {
   const [model, setModel] = useIfcModel();
+  const [file] = useIfcFile();
 
   const ifcLoader = useMemo(() => new IFCLoader(), []);
 
   useEffect(() => {
+    if (!file) return;
+
     (async function () {
       await ifcLoader.ifcManager.parser.setupOptionalCategories({
         [IFCSPACE]: false,
@@ -21,11 +24,11 @@ export const IFC = () => {
         USE_FAST_BOOLS: true,
       });
 
-      ifcLoader.load(ifcURL, function (m) {
-        setModel(m);
+      ifcLoader.load(file, function (mesh) {
+        setModel(mesh);
       });
     })();
-  }, [ifcLoader]);
+  }, [ifcLoader, file]);
 
   return <>{model && <primitive object={model} />}</>;
 };

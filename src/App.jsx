@@ -3,11 +3,20 @@ import "./App.css";
 import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import { IFC, Lights } from "./components/index";
+import { FileUpload, IFC, Lights } from "./components/index";
 
 function App() {
   return (
     <>
+      <FileUpload
+        style={{
+          position: "absolute",
+          top: "0",
+          left: "0",
+          zIndex: 10000,
+          margin: "20px",
+        }}
+      />
       <Canvas camera={{ fov: 45, position: [0, 0, 10] }}>
         <color attach="background" args={["#222"]} />
         <React.Suspense fallback={null}>

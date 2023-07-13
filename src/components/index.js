@@ -1,2 +1,3 @@
 export * from "./Context";
-export * from "./3D/index";
+export * from "./3D";
+export * from "./UI";
