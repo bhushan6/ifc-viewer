@@ -39,12 +39,28 @@ const LoadingContext = ({ children }) => {
 
 export const useLoading = () => useContext(LoadingCtx);
 
+const NumberOfWallsCtx = createContext(null);
+
+const NumberOfWallsContext = ({ children }) => {
+  const numberOfWallsState = useState();
+
+  return (
+    <NumberOfWallsCtx.Provider value={numberOfWallsState}>
+      {children}
+    </NumberOfWallsCtx.Provider>
+  );
+};
+
+export const useWalls = () => useContext(NumberOfWallsCtx);
+
 export const Context = ({ children }) => {
   return (
     <>
       <LoadingContext>
         <IfcFileContext>
-          <IfcModelContext>{children}</IfcModelContext>
+          <NumberOfWallsContext>
+            <IfcModelContext>{children}</IfcModelContext>
+          </NumberOfWallsContext>
         </IfcFileContext>
       </LoadingContext>
     </>

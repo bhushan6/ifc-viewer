@@ -4,11 +4,15 @@ import React, { useEffect, useMemo, useState } from "react";
 import { IFCLoader } from "web-ifc-three/IFCLoader";
 // import ifcURL from "../../assets/test2.ifc";
 import { IFCSPACE } from "web-ifc";
-import { useIfcFile, useIfcModel } from "../index";
+import { useIfcFile, useIfcModel, useWalls } from "../index";
+import { IFCWALLSTANDARDCASE as W } from "web-ifc";
+
+//
 
 export const IFC = () => {
   const [model, setModel] = useIfcModel();
   const [file] = useIfcFile();
+  const [walls, setWalls] = useWalls();
 
   const ifcLoader = useMemo(() => new IFCLoader(), []);
 
@@ -24,8 +28,14 @@ export const IFC = () => {
         USE_FAST_BOOLS: true,
       });
 
-      ifcLoader.load(file, function (mesh) {
+      ifcLoader.load(file, async function (mesh) {
         setModel(mesh);
+        const walls = await ifcLoader.ifcManager.getAllItemsOfType(
+          mesh.modelID,
+          W,
+          false
+        );
+        setWalls(walls);
       });
     })();
   }, [ifcLoader, file]);

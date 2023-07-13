@@ -3,7 +3,7 @@ import "./App.css";
 import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import { FileUpload, IFC, Lights } from "./components/index";
+import { FileUpload, HUD, IFC, Lights } from "./components/index";
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
           margin: "20px",
         }}
       />
+      <HUD />
       <Canvas camera={{ fov: 45, position: [0, 0, 10] }}>
         <color attach="background" args={["#222"]} />
         <React.Suspense fallback={null}>
