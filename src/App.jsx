@@ -36,7 +36,7 @@ function App() {
           <IFC />
           <Lights />
           <PostProcessing />
-          <Stats />
+          {/* <Stats /> */}
         </React.Suspense>
         <OrbitControls />
       </Canvas>
