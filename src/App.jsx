@@ -1,9 +1,16 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
 import "./App.css";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import { FileUpload, HUD, IFC, Lights } from "./components/index";
+import { OrbitControls, Stats } from "@react-three/drei";
+import {
+  FileUpload,
+  HUD,
+  IFC,
+  Lights,
+  PostProcessing,
+} from "./components/index";
 
 function App() {
   return (
@@ -18,12 +25,18 @@ function App() {
         }}
       />
       <HUD />
-      <Canvas camera={{ fov: 45, position: [0, 0, 10] }}>
+      <Canvas
+        gl={{ antialias: false }}
+        camera={{ fov: 45, position: [0, 0, 10] }}
+        frameloop="demand"
+      >
         <color attach="background" args={["#222"]} />
         <React.Suspense fallback={null}>
           <gridHelper args={[1500, 100]} position={[0, -0.5, 0]} />
           <IFC />
           <Lights />
+          <PostProcessing />
+          <Stats />
         </React.Suspense>
         <OrbitControls />
       </Canvas>

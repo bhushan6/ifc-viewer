@@ -44,3 +44,12 @@ button {
 .input::-webkit-file-upload-button {
   visibility: hidden;
 }
+
+.hud {
+  border-radius: 4px;
+  padding: 0 15px;
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 500;
+  margin: 20px;
+}
