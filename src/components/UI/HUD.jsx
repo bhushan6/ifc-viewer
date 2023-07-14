@@ -14,8 +14,10 @@ export const HUD = () => {
         zIndex: "10000",
         background: "white",
       }}
+      className="hud"
     >
-      {walls && <h1>{walls.length}</h1>}
+      <h1>Number of Walls</h1>
+      {walls ? <h1>{walls.length}</h1> : <h1>N/A</h1>}
     </div>
   );
 };
