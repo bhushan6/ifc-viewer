@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
 import "./App.css";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Stats } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import {
   FileUpload,
   HUD,
@@ -36,7 +36,6 @@ function App() {
           <IFC />
           <Lights />
           <PostProcessing />
-          {/* <Stats /> */}
         </React.Suspense>
         <OrbitControls />
       </Canvas>
