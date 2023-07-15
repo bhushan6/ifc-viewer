@@ -15,6 +15,20 @@ const IfcModelContext = ({ children }) => {
 
 export const useIfcModel = () => useContext(IfcModelCtx);
 
+const glbModelCtx = createContext(null);
+
+const GlbModelContext = ({ children }) => {
+  const glbModelState = useState([]);
+
+  return (
+    <glbModelCtx.Provider value={glbModelState}>
+      {children}
+    </glbModelCtx.Provider>
+  );
+};
+
+export const useGlbModels = () => useContext(glbModelCtx);
+
 const IfcFileCtx = createContext(null);
 
 const IfcFileContext = ({ children }) => {
@@ -59,7 +73,9 @@ export const Context = ({ children }) => {
       <LoadingContext>
         <IfcFileContext>
           <NumberOfWallsContext>
-            <IfcModelContext>{children}</IfcModelContext>
+            <IfcModelContext>
+              <GlbModelContext>{children}</GlbModelContext>
+            </IfcModelContext>
           </NumberOfWallsContext>
         </IfcFileContext>
       </LoadingContext>

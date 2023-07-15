@@ -17,7 +17,7 @@ export const IFC = () => {
   const ifcLoader = useMemo(() => new IFCLoader(), []);
 
   useEffect(() => {
-    if (!file) return;
+    if (!file || file.type !== "ifc") return;
 
     (async function () {
       await ifcLoader.ifcManager.parser.setupOptionalCategories({
@@ -28,7 +28,7 @@ export const IFC = () => {
         USE_FAST_BOOLS: true,
       });
 
-      ifcLoader.load(file, async function (mesh) {
+      ifcLoader.load(file.url, async function (mesh) {
         setModel(mesh);
         const walls = await ifcLoader.ifcManager.getAllItemsOfType(
           mesh.modelID,

@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
-import { useIfcFile } from "../Context";
+import { useGlbModels, useIfcFile } from "../Context";
 
 export const FileUpload = (props) => {
   const [file, setFile] = useIfcFile();
+  const [setGlbModels] = useGlbModels();
 
   const uploadFile = (e) => {
     const file = e.target.files[0];
@@ -10,7 +11,8 @@ export const FileUpload = (props) => {
     const extension = splitedName[splitedName.length - 1];
 
     const ifcURL = URL.createObjectURL(file);
-    setFile(ifcURL);
+    setFile({ type: extension, url: ifcURL });
+
     e.target.value = null;
   };
 
