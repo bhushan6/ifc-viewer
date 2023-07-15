@@ -14,8 +14,6 @@ function generateUniqueId() {
 }
 
 const GlbModel = ({ url, position }) => {
-  console.log(url, position);
-
   const { controls } = useThree();
 
   const { scene } = useGLTF(url);

@@ -10,6 +10,8 @@ import {
   IFC,
   Lights,
   PostProcessing,
+  GlbModels,
+  ToastNotification,
 } from "./components/index";
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
         }}
       />
       <HUD />
+      <ToastNotification />
       <Canvas
         gl={{ antialias: false }}
         camera={{ fov: 45, position: [0, 0, 10] }}
@@ -34,10 +37,11 @@ function App() {
         <React.Suspense fallback={null}>
           <gridHelper args={[1500, 100]} position={[0, -0.5, 0]} />
           <IFC />
+          <GlbModels />
           <Lights />
           <PostProcessing />
         </React.Suspense>
-        <OrbitControls />
+        <OrbitControls makeDefault />
       </Canvas>
     </>
   );
