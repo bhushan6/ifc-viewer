@@ -6,6 +6,9 @@ export const FileUpload = (props) => {
 
   const uploadFile = (e) => {
     const file = e.target.files[0];
+    const splitedName = file.name.split(".");
+    const extension = splitedName[splitedName.length - 1];
+
     const ifcURL = URL.createObjectURL(file);
     setFile(ifcURL);
     e.target.value = null;
@@ -21,7 +24,7 @@ export const FileUpload = (props) => {
           overflow: "hidden",
         }}
       >
-        Upload File
+        Upload Model
         <input
           type="file"
           className="input"
@@ -30,8 +33,10 @@ export const FileUpload = (props) => {
             left: "0",
             cursor: "pointer",
             pointerEvents: "all",
+            height: "100%",
           }}
           onChange={uploadFile}
+          accept=".ifc,.gltf,.glb"
         />
       </button>
     </div>
